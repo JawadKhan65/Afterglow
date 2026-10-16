@@ -19,6 +19,16 @@ Create a production build with `npm run build`.
 - Event discovery, event details, login, registration, and My Events routes.
 - Redux Toolkit authentication state with registration, login, logout, and persisted sessions.
 - Protected My Events route and client-side form validation.
+- Ticketmaster event search with keyword, city, category, date, and pagination filters.
+- Event detail view with venue, location, date, images, and Ticketmaster ticket link.
+
+## Ticketmaster API setup
+
+1. Copy `.env.example` to `.env` in the project root.
+2. Replace `your_ticketmaster_consumer_key` with the Consumer Key from your Ticketmaster Developer account.
+3. Restart the dev server with `npm run dev` after changing the key.
+
+Vite exposes `VITE_` variables to browser code. The `.env` file is ignored by Git, which prevents accidentally committing it, but a key used directly by a browser app is visible to visitors in the built JavaScript and network requests. Use a restricted development key and do not treat this as a private server secret. A backend proxy is needed to keep the key private in a deployed application.
 
 ## Authentication demo
 
