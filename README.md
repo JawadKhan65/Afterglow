@@ -2,7 +2,7 @@
 
 Frontend event management application built with React, Redux Toolkit, React Router, and Vite.
 
-## Run locally
+## Requirements and setup
 
 Requirements: Node.js 20.19+ or 22.12+ and npm.
 
@@ -11,7 +11,14 @@ npm install
 npm run dev
 ```
 
-Create a production build with `npm run build`.
+Vite prints the local address after the server starts, usually `http://localhost:5173`.
+
+Create and preview a production build with:
+
+```sh
+npm run build
+npm run preview
+```
 
 ## Current features
 
@@ -21,6 +28,7 @@ Create a production build with `npm run build`.
 - Protected My Events route and client-side form validation.
 - Ticketmaster event search with keyword, city, category, date, and pagination filters.
 - Event detail view with venue, location, date, images, and Ticketmaster ticket link.
+- Signed-in users can register once per event, cancel upcoming registrations, and view upcoming and completed registrations in My Events.
 
 ## Ticketmaster API setup
 
@@ -34,6 +42,15 @@ Vite exposes `VITE_` variables to browser code. The `.env` file is ignored by Gi
 
 Authentication is simulated in the browser as required by the assignment. Demo accounts are stored in local storage, including their passwords, so use a unique throwaway password. This is not secure authentication and must not be used for real accounts. The session persists after refresh; logging out removes the session but keeps the demo account available for another login.
 
-## Security and configuration
+## Data storage and security
 
-Local `.env` files are ignored by Git. Never commit API keys or other secrets. Ticketmaster API integration will be added in a later step using a local environment variable.
+This assignment is a frontend simulation. Demo accounts and event registrations are saved in browser local storage, separately by user. Local `.env` files are ignored by Git. Never commit API keys or other secrets. A key configured with a Vite `VITE_` variable is included in browser code and can be seen by visitors; a backend proxy is required to keep it private in a public deployment.
+
+## Project structure
+
+- `src/features/auth/` — simulated account and session state.
+- `src/features/registrations/` — user-specific event registration state.
+- `src/services/ticketmaster.js` — Ticketmaster API requests and error handling.
+- `src/pages/` — event discovery, event details, account, and registration views.
+- `src/components/` — shared layout and protected route.
+- `src/store.js` — Redux Toolkit store and registration persistence middleware.
